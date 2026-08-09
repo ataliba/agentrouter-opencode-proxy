@@ -34,6 +34,7 @@ from fastapi.responses import Response, StreamingResponse
 # ── Config ────────────────────────────────────────────────────────────────────
 
 TARGET   = "https://agentrouter.org"
+HOST     = os.environ.get("HOST", "127.0.0.1")
 PORT     = 7187
 KEY_FILE = Path.home() / ".config/opencode/api_keys/AGENT_ROUTER_API_KEY"
 
@@ -228,5 +229,5 @@ async def models():
 
 if __name__ == "__main__":
     print(f"AgentRouter proxy  →  {TARGET}")
-    print(f"Listening on http://127.0.0.1:{PORT}")
-    uvicorn.run(app, host="127.0.0.1", port=PORT, log_level="warning")
+    print(f"Listening on http://{HOST}:{PORT}")
+    uvicorn.run(app, host=HOST, port=PORT, log_level="warning")
